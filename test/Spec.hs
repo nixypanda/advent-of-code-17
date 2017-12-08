@@ -6,6 +6,7 @@ import D2CorruptionChecksumTest (corruptionTest)
 import D3SpiralMemoryTest (spiralTest, stressTest')
 import D4HighEntropyPassphrasesTest (validPassphraseTest, anagramTest, notAnagramTest)
 import D5MazeTest (howManyStepsTest)
+import D6MemoryAllocationTest (memAllocTests)
 
 
 allTests :: Test
@@ -19,6 +20,7 @@ allTests = TestList
   ++ anagramTest
   ++ notAnagramTest
   ++ howManyStepsTest
+  ++ memAllocTests
 
 
 main :: IO Counts
