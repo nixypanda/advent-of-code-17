@@ -27,8 +27,10 @@ library
                      , D5Maze
                      , D6MemoryAllocation
                      , D7RecursiveCircus
+                     , D8Registers
   build-depends:       base >= 4.7 && < 5
                      , containers
+                     , parsec
   default-language:    Haskell2010
 
 executable advent-of-code-exe
@@ -45,6 +47,8 @@ test-suite advent-of-code-test
   main-is:             Spec.hs
   build-depends:       base
                      , advent-of-code
+                     , containers
+                     , either-unwrap
                      , HUnit
   other-modules:       D1InverseCaptchaTest
                      , D2CorruptionChecksumTest
@@ -53,6 +57,7 @@ test-suite advent-of-code-test
                      , D5MazeTest
                      , D6MemoryAllocationTest
                      , D7RecursiveCircusTest
+                     , D8RegistersTest
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 

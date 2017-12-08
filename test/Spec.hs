@@ -8,6 +8,7 @@ import D4HighEntropyPassphrasesTest (validPassphraseTest, anagramTest, notAnagra
 import D5MazeTest (howManyStepsTest)
 import D6MemoryAllocationTest (memAllocTests)
 import D7RecursiveCircusTest (recTests)
+import D8RegistersTest (regTest)
 
 
 allTests :: Test
@@ -23,6 +24,7 @@ allTests = TestList
   ++ howManyStepsTest
   ++ memAllocTests
   ++ recTests
+  ++ regTest
 
 
 main :: IO Counts
