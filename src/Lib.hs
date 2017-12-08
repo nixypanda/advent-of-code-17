@@ -8,6 +8,7 @@ import D3SpiralMemory (spiralMemory, stressTest)
 import D4HighEntropyPassphrases (areValid, notAnagrams)
 import D5Maze (howManySteps, howManySteps')
 import D6MemoryAllocation (sol6p1, sol6p2)
+import D7RecursiveCircus (sol7p1, sol7p2)
 
 
 answer :: (Read a, Read c, Show b, Show d) => (a -> b) -> (c -> d) -> String -> String
@@ -25,3 +26,4 @@ getResult 3 = answer spiralMemory stressTest
 getResult 4 = answer' areValid notAnagrams
 getResult 5 = answer' howManySteps howManySteps'
 getResult 6 = answer' sol6p1 sol6p2
+getResult 7 = answer' sol7p1 sol7p2
