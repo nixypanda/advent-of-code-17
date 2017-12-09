@@ -49,8 +49,10 @@ test-suite advent-of-code-test
                      , advent-of-code
                      , containers
                      , either-unwrap
+                     , parsec
                      , HUnit
-  other-modules:       D1InverseCaptchaTest
+  other-modules:       Common
+                     , D1InverseCaptchaTest
                      , D2CorruptionChecksumTest
                      , D3SpiralMemoryTest
                      , D4HighEntropyPassphrasesTest

@@ -5,8 +5,8 @@ module D8Registers
   , Function(..)
   , parseExpr
   , eval
-  , sol8p1
-  , sol8p2
+  , d8p1
+  , d8p2
   ) where
 
 import Control.Arrow ((&&&))
@@ -139,8 +139,8 @@ fromRight _ = error "fromRight: Called on Left"
 
 
 -- being a dick here again (tip read bottom to top)
-sol8p1 :: String -> Int
-sol8p1 =
+d8p1 :: String -> Int
+d8p1 =
     maximum
   . last
   . uncurry eval
@@ -151,8 +151,8 @@ sol8p1 =
 -- Part 2
 
 -- well here again
-sol8p2 :: String -> Int
-sol8p2 =
+d8p2 :: String -> Int
+d8p2 =
     maximum
   . fmap maximum
   . uncurry eval

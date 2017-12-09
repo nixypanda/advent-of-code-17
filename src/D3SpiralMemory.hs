@@ -1,6 +1,6 @@
 module D3SpiralMemory
-  ( spiralMemory
-  , stressTest
+  ( d3p1
+  , d3p2
   ) where
 
 import Control.Arrow ((***))
@@ -23,18 +23,6 @@ coords :: [Coordinate]
 coords = spiral Right' (0, 0) 0 0
 
 
-spiralMemory :: Int -> Int
-spiralMemory n =
-  let
-    -- corresponding numbers that occupy the coordinate
-    numAndCoords = zip [0..] coords
-  in
-    -- take numbers while the number is less than n
-    -- get the last coordinate that is less than n
-    -- sum the absolute value
-    uncurry (+) . (abs *** abs) . snd . last . takeWhile ((< n) . fst) $ numAndCoords
-
-
 -- Here we are constructing the infinite list of coordinates that form the spiral
 -- The idea is quite simple keep going in a direction (e.g. Up) until you hit the
 -- celing (or floor) {given by px (positive max) and nx (negative max)} then change the
@@ -55,6 +43,20 @@ spiral Left' (px, nx) x y
 spiral Down (px, nx) x y
   | nx == y = (x, y) : spiral Right' (px, nx) (x + 1) y
   | otherwise = (x, y) : spiral Down (px, nx) x (y - 1)
+
+
+-- Part 1
+
+d3p1 :: Int -> Int
+d3p1 n =
+  let
+    -- corresponding numbers that occupy the coordinate
+    numAndCoords = zip [0..] coords
+ in
+    -- take numbers while the number is less than n
+    -- get the last coordinate that is less than n
+    -- sum the absolute value
+    uncurry (+) . (abs *** abs) . snd . last . takeWhile ((< n) . fst) $ numAndCoords
 
 
 
@@ -89,8 +91,8 @@ stress m ((x, y):xs) =
     value : stress newMap xs
 
 
-stressTest :: Int -> Int
-stressTest n =
+d3p2 :: Int -> Int
+d3p2 n =
   let
     -- need special handling as the value at (0, 0) is 1
     -- i.e. it is not calculated in any way (but just is there)

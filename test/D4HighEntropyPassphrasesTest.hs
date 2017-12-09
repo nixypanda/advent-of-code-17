@@ -1,20 +1,40 @@
 module D4HighEntropyPassphrasesTest
-  ( validPassphraseTest
-  , anagramTest
-  , notAnagramTest
+  ( d4Tests
   ) where
 
 import Test.HUnit
 
-import D4HighEntropyPassphrases (isHighEntropy, anagrams, anyAnagrams, notAnagrams)
+import Common
+import D4HighEntropyPassphrases (isHighEntropy, anagrams, anyAnagrams, d4p2)
 
 
-validPassphraseTest :: [Test]
-validPassphraseTest =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "aa bb cc dd ee should be True" True $ isHighEntropy (words "aa bb cc dd ee")
-  , TestLabel "Basic" $ TestCase $ assertEqual "aa bb cc dd aa should be False" False $ isHighEntropy (words "aa bb cc dd aa")
-  , TestLabel "Basic" $ TestCase $ assertEqual "aa bb cc dd aaa should be True" True $ isHighEntropy (words "aa bb cc dd aaa")
+validPassphraseTests :: [TestDefinition [String] Bool]
+validPassphraseTests =
+  [ TD "" "" (words "aa bb cc dd ee") True
+  , TD "" "" (words "aa bb cc dd aa") False
+  , TD "" "" (words "aa bb cc dd aaa") True
   ]
+
+
+anyAnagramsTests :: [TestDefinition [String] Bool]
+anyAnagramsTests =
+  [ TD "" "" ["abcde", "fghij"] False
+  , TD "" "" ["abcde", "xyz", "ecdab"] True
+  , TD "" "" (words "a ab abc abd abf abj") False
+  ]
+
+
+notAnagramTests :: [TestDefinition String Int]
+notAnagramTests =
+  [ TD "" "" phrases 3
+  ]
+
+d4Tests :: [Test]
+d4Tests =
+  fmap (apply isHighEntropy) validPassphraseTests
+  ++ anagramTest
+  ++ fmap (apply anyAnagrams) anyAnagramsTests
+  ++ fmap (apply d4p2) notAnagramTests
 
 
 anagramTest :: [Test]
@@ -24,6 +44,7 @@ anagramTest =
   ]
 
 
+phrases :: String
 phrases = unlines
   [ "abcde fghij"
   , "abcde xyz ecdab"
@@ -31,13 +52,4 @@ phrases = unlines
   , "iiii oiii ooii oooi oooo"
   , "oiii ioii iioi iiio"
   ]
-
-notAnagramTest :: [Test]
-notAnagramTest =
-  [ TestLabel "Anagram" $ TestCase $ assertEqual "abcde fghij are not" False $ anyAnagrams ["abcde", "fghij"]
-  , TestLabel "Anagram" $ TestCase $ assertEqual "abcde fghij are not" True $ anyAnagrams ["abcde", "xyz", "ecdab"]
-  , TestLabel "Anagram" $ TestCase $ assertEqual "abcde fghij are not" False $ anyAnagrams (words "a ab abc abd abf abj")
-  , TestLabel "Anagram" $ TestCase $ assertEqual "abcde fghij are not" 3 $ notAnagrams phrases
-  ]
-
 

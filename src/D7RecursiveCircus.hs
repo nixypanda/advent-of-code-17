@@ -3,9 +3,9 @@ module D7RecursiveCircus
   , getHead
   , readMap
   , stringToRose
-  , sol7p1
+  , d7p1
   , getInvalidNode
-  , sol7p2
+  , d7p2
   ) where
 
 import Data.Maybe (fromJust)
@@ -37,12 +37,12 @@ readMap =
     fmap ((\(node:weight:others) -> (node, toInt weight, toList others)) . words) . lines
 
 
-sol7p1 :: String -> String
-sol7p1 = getHead . readMap
+d7p1 :: String -> String
+d7p1 = getHead . readMap
 
 
 -- Part 2
--- Ok this solution needs some cleanup IMO it's going crazy here
+-- Ok this dution needs some cleanup IMO it's going crazy here
 
 toMap :: [(String, Int, [String])] -> M.Map String (Int, [String])
 toMap xs = M.fromList [(x, (y, z)) | (x, y, z) <- xs]
@@ -98,8 +98,8 @@ stringToRose :: String -> Rose String Int
 stringToRose = uncurry toRose . (toMap &&& getHead) . readMap
 
 
-sol7p2 :: String -> ([Int], [Int])
-sol7p2 s =
+d7p2 :: String -> ([Int], [Int])
+d7p2 s =
   let
     r = stringToRose s
     weightedR = weightedRose r

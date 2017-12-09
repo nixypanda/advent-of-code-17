@@ -1,26 +1,32 @@
 module D3SpiralMemoryTest
-  ( spiralTest
-  , stressTest'
+  ( d3Tests
   ) where
 
 import Test.HUnit
 
-import D3SpiralMemory (spiralMemory, stressTest)
+import Common
+import D3SpiralMemory (d3p1, d3p2)
 
-spiralTest :: [Test]
-spiralTest =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "1 is carried 0 steps" 0 $ spiralMemory 1
-  , TestLabel "Basic" $ TestCase $ assertEqual "12 is carried 3 steps" 3 $ spiralMemory 12
-  , TestLabel "Basic" $ TestCase $ assertEqual "23 is carried 2 steps" 2 $ spiralMemory 23
-  , TestLabel "Basic" $ TestCase $ assertEqual "1024 is carried 31 steps" 31 $ spiralMemory 1024
+
+
+d3p1Tests :: [TestDefinition Int Int]
+d3p1Tests =
+  [ TD "" "" 1 0
+  , TD "" "" 12 3
+  , TD "" "" 23 2
+  , TD "" "" 1024 31
   ]
 
-stressTest' :: [Test]
-stressTest' =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "4 < 5" 5 $ stressTest 4
-  , TestLabel "Basic" $ TestCase $ assertEqual "122 < 133" 133 $ stressTest 122
-  , TestLabel "Basic" $ TestCase $ assertEqual "747 < 806" 806 $ stressTest 747
-  , TestLabel "Basic" $ TestCase $ assertEqual "330 < 351" 351 $ stressTest 330
+
+d3p2Tests :: [TestDefinition Int Int]
+d3p2Tests =
+  [ TD "" "" 4 5
+  , TD "" "" 122 133
+  , TD "" "" 747 806
+  , TD "" "" 330 351
   ]
 
+
+d3Tests :: [Test]
+d3Tests = fmap (apply d3p1) d3p1Tests ++ fmap (apply d3p2) d3p2Tests
 

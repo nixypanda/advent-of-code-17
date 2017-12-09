@@ -1,21 +1,26 @@
 module D1InverseCaptchaTest
-  ( invCaptchaTests
-  , splitCaptchaTests
+  ( d1Tests
   ) where
 
 import Test.HUnit
 
-import D1InverseCaptcha (invCaptcha, splitCaptcha)
+import Common
+import D1InverseCaptcha (d1p1, d1p2)
 
-invCaptchaTests :: [Test]
-invCaptchaTests =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "(1122) should be 3" 3 $ invCaptcha "1122"
-  , TestLabel "Basic" $ TestCase $ assertEqual "(1111) should be 4" 4 $ invCaptcha "1111"
+
+d1p1Tests :: [TestDefinition String Int]
+d1p1Tests =
+  [ TD "" "" "1122" 3
+  , TD "" "" "1111" 4
   ]
 
 
-splitCaptchaTests :: [Test]
-splitCaptchaTests =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "(1212) should be 6" 6 $ splitCaptcha "1212"
-  , TestLabel "Basic" $ TestCase $ assertEqual "(12131415) should be 4" 4 $ splitCaptcha "12131415"
+d1p2Tests :: [TestDefinition String Int]
+d1p2Tests =
+  [ TD "" "" "1212" 6
+  , TD "" "" "12131415" 4
   ]
+
+d1Tests :: [Test]
+d1Tests = fmap (apply d1p1) d1p1Tests ++ fmap (apply d1p2) d1p2Tests
+

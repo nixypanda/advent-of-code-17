@@ -1,13 +1,11 @@
 module D5Maze
-  ( howManySteps
-  , howManySteps'
+  ( d5p1
+  , d5p2
   ) where
 
 
 import qualified Data.Map as M
 
-
--- Part 1
 
 theMaze :: [Int] -> M.Map Int Int
 theMaze xs = M.fromList $ zip [0..] xs
@@ -24,10 +22,13 @@ jump incrF key maze =
       Nothing -> 0
 
 
-howManySteps :: String -> Int
-howManySteps = jump (+1) 0 . theMaze . fmap read . lines
+-- Part 1
+
+d5p1 :: String -> Int
+d5p1 = jump (+1) 0 . theMaze . fmap read . lines
 
 
 -- Part 2
-howManySteps' :: String -> Int
-howManySteps' = jump (\x -> if x >= 3 then x - 1 else x + 1) 0 . theMaze . fmap read . lines
+
+d5p2 :: String -> Int
+d5p2 = jump (\x -> if x >= 3 then x - 1 else x + 1) 0 . theMaze . fmap read . lines

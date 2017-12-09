@@ -1,10 +1,11 @@
 module D7RecursiveCircusTest
-  ( recTests
+  ( d7Tests
   ) where
 
 import Test.HUnit
 
-import D7RecursiveCircus (Rose(..), getHead, readMap, stringToRose, getInvalidNode, sol7p2)
+import Common
+import D7RecursiveCircus (Rose(..), getHead, readMap, stringToRose, getInvalidNode, d7p2)
 
 
 diskMap :: [(String, Int, [String])]
@@ -62,20 +63,33 @@ tree =
     ]
 
 
-
-headTests :: [Test]
+headTests :: [TestDefinition [(String, Int, [String])] String]
 headTests =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "" "tknk" $ getHead diskMap
+  [ TD "" "" diskMap "tknk"
   ]
 
-readTest :: [Test]
-readTest =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "" diskMap $ readMap strMap
-  , TestLabel "Basic" $ TestCase $ assertEqual "" tree $ stringToRose strMap
-  , TestLabel "Basic" $ TestCase $ assertEqual "" ([251, 243, 243], [68, 45, 72]) $ sol7p2 strMap
-  , TestLabel "Basic" $ TestCase $ assertEqual "" "ugml" $ getInvalidNode tree
+
+toRoseTests :: [TestDefinition String (Rose String Int)]
+toRoseTests =
+  [ TD "" "" strMap tree
   ]
 
-recTests :: [Test]
-recTests = headTests ++ readTest
+
+d7p2Tests :: [TestDefinition String ([Int], [Int])]
+d7p2Tests =
+  [ TD "" "" strMap ([251, 243, 243], [68, 45, 72])
+  ]
+
+
+invalidNodeTests :: [TestDefinition (Rose String Int) String]
+invalidNodeTests =
+  [ TD "" "" tree "ugml"
+  ]
+
+
+d7Tests :: [Test]
+d7Tests = fmap (apply getHead) headTests
+  ++ fmap (apply stringToRose) toRoseTests
+  ++ fmap (apply d7p2) d7p2Tests
+  ++ fmap (apply getInvalidNode) invalidNodeTests
 

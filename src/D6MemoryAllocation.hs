@@ -2,8 +2,8 @@ module D6MemoryAllocation
   ( getIncrements
   , memAlloc
   , cycleLen
-  , sol6p1
-  , sol6p2
+  , d6p1
+  , d6p2
   ) where
 
 import Data.List (elemIndex)
@@ -58,8 +58,8 @@ memAlloc :: [Int] -> [[Int]]
 memAlloc xs = memAlloc' S.empty (length xs) xs
 
 
-sol6p1 :: String -> Int
-sol6p1 = length . memAlloc . fmap read . words
+d6p1 :: String -> Int
+d6p1 = length . memAlloc . fmap read . words
 
 
 -- Part 2
@@ -68,5 +68,5 @@ cycleLen :: [[Int]] -> Int
 cycleLen xs = length xs - fromJust (elemIndex x xs) - 1 where x = last xs
 
 
-sol6p2 :: String -> Int
-sol6p2 = cycleLen . memAlloc . fmap read . words
+d6p2 :: String -> Int
+d6p2 = cycleLen . memAlloc . fmap read . words

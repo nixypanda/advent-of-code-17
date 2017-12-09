@@ -1,9 +1,9 @@
 module D4HighEntropyPassphrases
   ( isHighEntropy
-  , areValid
   , anagrams
   , anyAnagrams
-  , notAnagrams
+  , d4p1
+  , d4p2
   ) where
 
 import Control.Arrow ((&&&))
@@ -19,8 +19,8 @@ isHighEntropy =
   uncurry (==) . (length &&& (S.size . S.fromList))
 
 
-areValid :: String -> Int
-areValid =
+d4p1 :: String -> Int
+d4p1 =
   length . filter (== True) . fmap (isHighEntropy . words) . lines
 
 
@@ -39,6 +39,6 @@ anyAnagrams =
     or . fmap (uncurry anagrams) . pairs
 
 
-notAnagrams :: String -> Int
-notAnagrams =
+d4p2 :: String -> Int
+d4p2 =
   length . filter (== False) . fmap (anyAnagrams . words) . lines

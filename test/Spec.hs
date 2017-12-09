@@ -1,30 +1,26 @@
 import Test.HUnit
 
 
-import D1InverseCaptchaTest (invCaptchaTests, splitCaptchaTests)
-import D2CorruptionChecksumTest (corruptionTest)
-import D3SpiralMemoryTest (spiralTest, stressTest')
-import D4HighEntropyPassphrasesTest (validPassphraseTest, anagramTest, notAnagramTest)
-import D5MazeTest (howManyStepsTest)
-import D6MemoryAllocationTest (memAllocTests)
-import D7RecursiveCircusTest (recTests)
-import D8RegistersTest (regTest)
+import D1InverseCaptchaTest (d1Tests)
+import D2CorruptionChecksumTest (d2Tests)
+import D3SpiralMemoryTest (d3Tests)
+import D4HighEntropyPassphrasesTest (d4Tests)
+import D5MazeTest (d5Tests)
+import D6MemoryAllocationTest (d6Tests)
+import D7RecursiveCircusTest (d7Tests)
+import D8RegistersTest (d8Tests)
 
 
 allTests :: Test
 allTests = TestList
-  $  invCaptchaTests
-  ++ splitCaptchaTests
-  ++ corruptionTest
-  ++ spiralTest
-  ++ stressTest'
-  ++ validPassphraseTest
-  ++ anagramTest
-  ++ notAnagramTest
-  ++ howManyStepsTest
-  ++ memAllocTests
-  ++ recTests
-  ++ regTest
+  $  d1Tests
+  ++ d2Tests
+  ++ d3Tests
+  ++ d4Tests
+  ++ d5Tests
+  ++ d6Tests
+  ++ d7Tests
+  ++ d8Tests
 
 
 main :: IO Counts

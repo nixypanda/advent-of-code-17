@@ -1,20 +1,22 @@
 module D6MemoryAllocationTest
-  ( memAllocTests
+  ( d6Tests
   ) where
 
 import Test.HUnit
 
+import Common
 import D6MemoryAllocation (getIncrements, memAlloc, cycleLen)
 
 
-incrementTests :: [Test]
+incrementTests :: [TestDefinition Int [Int]]
 incrementTests =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "" [2, 2, 2, 1] $ getIncrements 4 7
-  , TestLabel "Basic" $ TestCase $ assertEqual "" [1, 1, 1, 1] $ getIncrements 4 4
-  , TestLabel "Basic" $ TestCase $ assertEqual "" [1, 1, 1, 0] $ getIncrements 4 3
+  [ TD "Basic" "" 7 [2, 2, 2, 1]
+  , TD "Basic" "" 4 [1, 1, 1, 1]
+  , TD "Basic" "" 3 [1, 1, 1, 0]
   ]
 
 
+distributions :: [[Int]]
 distributions =
   [ [2, 4, 1, 2]
   , [3, 1, 2, 3]
@@ -23,16 +25,18 @@ distributions =
   , [2, 4, 1, 2]
   ]
 
-memAllocTests' :: [Test]
+memAllocTests' :: [TestDefinition [Int] [[Int]]]
 memAllocTests' =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "" distributions $ memAlloc [0, 2, 7, 0]
+  [ TD "Basic" "" [0, 2, 7, 0] distributions
   ]
 
 
-cycleTests :: [Test]
+cycleTests :: [TestDefinition [[Int]] Int]
 cycleTests =
-  [ TestLabel "Basic" $ TestCase $ assertEqual "" 4 $ cycleLen distributions
+  [ TD "Basic" "" distributions 4
   ]
 
-memAllocTests :: [Test]
-memAllocTests = incrementTests ++ memAllocTests' ++ cycleTests
+d6Tests :: [Test]
+d6Tests = fmap (apply $ getIncrements 4) incrementTests
+  ++ fmap (apply memAlloc) memAllocTests'
+  ++ fmap (apply cycleLen) cycleTests

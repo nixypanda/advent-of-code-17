@@ -1,10 +1,11 @@
 module D2CorruptionChecksumTest
-  ( corruptionTest
+  ( d2Tests
   ) where
 
 import Test.HUnit
 
-import D2CorruptionChecksum (checksum, evenDivision)
+import Common
+import D2CorruptionChecksum (d2p1, d2p2)
 
 
 check :: String
@@ -22,10 +23,16 @@ evenDiv = unlines
   , "3 8 6 5"
   ]
 
-
-corruptionTest :: [Test]
-corruptionTest =
-  [ TestLabel "Basic" $ TestCase $ assertEqual (check ++ " should be 18") 18 $ checksum check
-  , TestLabel "Basic" $ TestCase $ assertEqual (evenDiv ++ " should be 9") 9 $ evenDivision evenDiv
+d2p1Tests :: [TestDefinition String Int]
+d2p1Tests =
+  [ TD "" "" check 18
   ]
 
+
+d2p2Tests :: [TestDefinition String Int]
+d2p2Tests =
+  [ TD "" "" evenDiv 9
+  ]
+
+d2Tests :: [Test]
+d2Tests = fmap (apply d2p1) d2p1Tests ++ fmap (apply d2p2) d2p2Tests

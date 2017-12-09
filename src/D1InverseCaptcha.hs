@@ -1,16 +1,18 @@
 module D1InverseCaptcha
-  ( invCaptcha
-  , splitCaptcha
+  ( d1p1
+  , d1p2
   ) where
 
 import Data.Char (digitToInt)
 
 
-toDigit :: Char -> Integer
+toDigit :: Char -> Int
 toDigit = fromIntegral . digitToInt
 
 
-isum :: String -> Integer
+-- Part 1
+
+isum :: String -> Int
 isum [] = 0
 isum [x] = 0
 isum (x:y:xs)
@@ -22,20 +24,24 @@ append :: String -> String
 append [] = []
 append (x:xs) = x:xs ++ [x]
 
-invCaptcha :: String -> Integer
-invCaptcha = isum . append
+
+d1p1 :: String -> Int
+d1p1 = isum . append
 
 
 -- Part Two
+
 split :: Int -> [a] -> ([a], [a])
 split n xs = (take n xs, drop n xs)
+
 
 splitHalf :: [a] -> ([a], [a])
 splitHalf xs = split (length xs `div` 2) xs
 
 
-sumWhenSame :: String -> String -> Integer
+sumWhenSame :: String -> String -> Int
 sumWhenSame xs ys = sum $ zipWith (\x y -> if x == y then toDigit x + toDigit y else 0) xs ys
 
-splitCaptcha :: String -> Integer
-splitCaptcha = uncurry sumWhenSame . splitHalf
+
+d1p2 :: String -> Int
+d1p2 = uncurry sumWhenSame . splitHalf
