@@ -10,6 +10,7 @@ import D5Maze (d5p1, d5p2)
 import D6MemoryAllocation (d6p1, d6p2)
 import D7RecursiveCircus (d7p1, d7p2)
 import D8Registers (d8p1, d8p2)
+import D9StreamProcessing (d9p1, d9p2)
 
 
 answer :: (Read a, Read c, Show b, Show d) => (a -> b) -> (c -> d) -> String -> String
@@ -29,3 +30,4 @@ getResult 5 = answer' d5p1 d5p2
 getResult 6 = answer' d6p1 d6p2
 getResult 7 = answer' d7p1 d7p2
 getResult 8 = answer' d8p1 d8p2
+getResult 9 = answer' d9p1 d9p2

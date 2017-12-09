@@ -9,6 +9,7 @@ import D5MazeTest (d5Tests)
 import D6MemoryAllocationTest (d6Tests)
 import D7RecursiveCircusTest (d7Tests)
 import D8RegistersTest (d8Tests)
+import D9StreamProcessingTest (d9Tests)
 
 
 allTests :: Test
@@ -21,6 +22,7 @@ allTests = TestList
   ++ d6Tests
   ++ d7Tests
   ++ d8Tests
+  ++ d9Tests
 
 
 main :: IO Counts
