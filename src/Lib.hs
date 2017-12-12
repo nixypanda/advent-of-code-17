@@ -13,6 +13,7 @@ import D8Registers (d8p1, d8p2)
 import D9StreamProcessing (d9p1, d9p2)
 import D10KnotHash (d10p1, d10p2)
 import D11HexEd (d11p1, d11p2)
+import D12DigitalPlumber (d12p1, d12p2)
 
 
 answer :: (Read a, Read c, Show b, Show d) => (a -> b) -> (c -> d) -> String -> String
@@ -35,3 +36,4 @@ getResult  8 = answer' d8p1  d8p2
 getResult  9 = answer' d9p1  d9p2
 getResult 10 = answer' d10p1 d10p2
 getResult 11 = answer' d11p1 d11p2
+getResult 12 = answer' d12p1 d12p2
