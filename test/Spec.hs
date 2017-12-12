@@ -11,6 +11,7 @@ import D7RecursiveCircusTest (d7Tests)
 import D8RegistersTest (d8Tests)
 import D9StreamProcessingTest (d9Tests)
 import D10KnotHashTest (d10Tests)
+import D11HexEdTest (d11Tests)
 
 
 allTests :: Test
@@ -25,6 +26,7 @@ allTests = TestList
   ++ d8Tests
   ++ d9Tests
   ++ d10Tests
+  ++ d11Tests
 
 
 main :: IO Counts

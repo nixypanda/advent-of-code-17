@@ -31,17 +31,9 @@ d1p1 = isum . append
 
 -- Part Two
 
-split :: Int -> [a] -> ([a], [a])
-split n xs = (take n xs, drop n xs)
-
-
-splitHalf :: [a] -> ([a], [a])
-splitHalf xs = split (length xs `div` 2) xs
-
-
 sumWhenSame :: String -> String -> Int
 sumWhenSame xs ys = sum $ zipWith (\x y -> if x == y then toDigit x + toDigit y else 0) xs ys
 
 
 d1p2 :: String -> Int
-d1p2 = uncurry sumWhenSame . splitHalf
+d1p2 xs = uncurry sumWhenSame $ splitAt (length xs `div` 2) xs
