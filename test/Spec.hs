@@ -13,6 +13,7 @@ import D9StreamProcessingTest (d9Tests)
 import D10KnotHashTest (d10Tests)
 import D11HexEdTest (d11Tests)
 import D12DigitalPlumberTest (d12Tests)
+import D13PacketScannersTest (d13Tests)
 
 
 allTests :: Test
@@ -29,6 +30,7 @@ allTests = TestList
   ++ d10Tests
   ++ d11Tests
   ++ d12Tests
+  ++ d13Tests
 
 
 main :: IO Counts
