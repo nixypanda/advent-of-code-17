@@ -14,6 +14,7 @@ import D10KnotHashTest (d10Tests)
 import D11HexEdTest (d11Tests)
 import D12DigitalPlumberTest (d12Tests)
 import D13PacketScannersTest (d13Tests)
+import D15DualGensTest (d15Tests)
 
 
 allTests :: Test
@@ -31,6 +32,7 @@ allTests = TestList
   ++ d11Tests
   ++ d12Tests
   ++ d13Tests
+  ++ d15Tests
 
 
 main :: IO Counts

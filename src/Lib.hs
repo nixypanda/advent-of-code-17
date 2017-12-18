@@ -15,6 +15,7 @@ import D10KnotHash (d10p1, d10p2)
 import D11HexEd (d11p1, d11p2)
 import D12DigitalPlumber (d12p1, d12p2)
 import D13PacketScanners (d13p1, d13p2)
+import D15DualGens (d15p1, d15p2)
 
 
 answer :: (Read a, Read c, Show b, Show d) => (a -> b) -> (c -> d) -> String -> String
@@ -39,3 +40,4 @@ getResult 10 = answer' d10p1 d10p2
 getResult 11 = answer' d11p1 d11p2
 getResult 12 = answer' d12p1 d12p2
 getResult 13 = answer' d13p1 d13p2
+getResult 15 = answer' d15p1 d15p2
